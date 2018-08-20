@@ -1,0 +1,24 @@
+Spirit Island
+
+ISIGameContext {
+    gameState: PreGame | InGame | PostGame;
+    subState: phase?
+    round: number
+    board: ISIBoardContext;
+
+}
+
+Update to TTT
+    - Orchestrators
+        - They are not allowed to udpate context directly
+        - They are only allowed to fire actions for other orchestrators or resolvers
+        - Usually tied to higher-level actions
+    - Resolvers
+        - Can directly update the part of the context they own
+        - That's all they're aware of
+        - Any other needed part of the context must be passed in as part of the action payload
+        - Always undoable?
+        - No randomness
+        - Usually tied to concrete components/subState
+
+How do orchestrators call resolvers? Through gameContext.getResolver? Passing in only part of context that the resolver is aware of?
